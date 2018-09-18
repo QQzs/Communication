@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.zs.demo.communication">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".StartActivity"/>
+        <activity android:name=".BindActivity"/>
+
+        <service
+            android:name=".service.BindService">
+            <intent-filter>
+                <action android:name="com.zs.communication.service2"/>
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".service.StartService">
+            <intent-filter>
+                <action android:name="com.zs.communication.service3"/>
+            </intent-filter>
+        </service>
+
+    </application>
+
+</manifest>
