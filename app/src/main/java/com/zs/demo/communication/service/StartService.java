@@ -14,6 +14,10 @@ public class StartService extends Service {
      */
     public static final int MAX_PROGRESS = 100;
     /**
+     * 结束
+     */
+    private boolean isStop;
+    /**
      * 进度条的进度值
      */
     private int progress = 0;
@@ -41,12 +45,10 @@ public class StartService extends Service {
 
             @Override
             public void run() {
-                while(progress < MAX_PROGRESS){
+                while(!isStop && progress < MAX_PROGRESS){
                     progress += 5;
-
                     intent.putExtra("progress",progress);
                     sendBroadcast(intent);
-
                     try {
                         Thread.sleep(1000);
                     } catch (InterruptedException e) {
@@ -76,7 +78,10 @@ public class StartService extends Service {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mThread.interrupt();
+        isStop = true;
+        if (mThread != null && mThread.isAlive()){
+            mThread.interrupt();
+        }
     }
 
 }

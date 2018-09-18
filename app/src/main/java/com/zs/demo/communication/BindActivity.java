@@ -20,6 +20,7 @@ public class BindActivity extends AppCompatActivity {
     private ServiceConnection serviceConnection;
     private MsgReceiver msgReceiver;
     private ProgressBar mProgressBar;
+    private boolean mBound;
 
 
     @Override
@@ -37,7 +38,7 @@ public class BindActivity extends AppCompatActivity {
         serviceConnection = new ServiceConnection() {
             @Override
             public void onServiceDisconnected(ComponentName name) {
-
+                mBound = false;
             }
 
             @Override
@@ -50,8 +51,7 @@ public class BindActivity extends AppCompatActivity {
                         mProgressBar.setProgress(progress);
                     }
                 });
-
-
+                mBound = true;
             }
         };
 
@@ -74,9 +74,16 @@ public class BindActivity extends AppCompatActivity {
      * @param view
      */
     public void cancel(View view){
-        mProgressBar.setProgress(0);
-        unbindService(serviceConnection);
+        unBindService();
     }
+
+    public void unBindService(){
+        if (mBound){
+            unbindService(serviceConnection);
+            mBound = false;
+        }
+    }
+
 
 
     class MsgReceiver extends BroadcastReceiver{
@@ -91,7 +98,7 @@ public class BindActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        unbindService(serviceConnection);
         super.onDestroy();
+        unBindService();
     }
 }

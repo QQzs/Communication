@@ -46,7 +46,6 @@ public class StartActivity extends AppCompatActivity {
      * @param view
      */
     public void cancel(View view){
-        mProgressBar.setProgress(0);
         stopService(serviceIntent);
     }
 
@@ -63,7 +62,7 @@ public class StartActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        stopService(serviceIntent);
         super.onDestroy();
+        stopService(serviceIntent);
     }
 }
