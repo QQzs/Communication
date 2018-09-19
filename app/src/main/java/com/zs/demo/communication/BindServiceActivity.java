@@ -14,7 +14,7 @@ import android.widget.ProgressBar;
 
 import com.zs.demo.communication.service.BindService;
 
-public class BindActivity extends AppCompatActivity {
+public class BindServiceActivity extends AppCompatActivity {
 
     private BindService bindService;
     private ServiceConnection serviceConnection;

@@ -11,7 +11,7 @@ import android.widget.ProgressBar;
 
 import com.zs.demo.communication.service.StartService;
 
-public class StartActivity extends AppCompatActivity {
+public class StartServiceActivity extends AppCompatActivity {
 
     private Intent serviceIntent;
     private MsgReceiver msgReceiver;

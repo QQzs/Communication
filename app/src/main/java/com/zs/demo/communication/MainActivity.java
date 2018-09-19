@@ -25,14 +25,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startService(View view){
-        Intent intent = new Intent(this,StartActivity.class);
+        Intent intent = new Intent(this,StartServiceActivity.class);
         startActivity(intent);
     }
 
     public void bindService(View view){
-        Intent intent = new Intent(this,BindActivity.class);
+        Intent intent = new Intent(this,BindServiceActivity.class);
         startActivity(intent);
     }
 
+    public void intentService(View view){
+        Intent intent = new Intent(this,IntentServiceActivity.class);
+        startActivity(intent);
+    }
 
 }

@@ -15,21 +15,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StartActivity"/>
-        <activity android:name=".BindActivity"/>
+        <activity android:name=".StartServiceActivity"/>
+        <activity android:name=".BindServiceActivity"/>
+        <activity android:name=".IntentServiceActivity"/>
 
         <service
             android:name=".service.BindService">
-            <intent-filter>
-                <action android:name="com.zs.communication.service2"/>
-            </intent-filter>
         </service>
 
         <service
             android:name=".service.StartService">
-            <intent-filter>
-                <action android:name="com.zs.communication.service3"/>
-            </intent-filter>
+        </service>
+
+        <service
+            android:name=".service.MyIntentService">
         </service>
 
     </application>
