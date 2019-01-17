@@ -1,10 +1,8 @@
 package com.zs.demo.communication;
 
-import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
@@ -18,7 +16,6 @@ public class BindServiceActivity extends AppCompatActivity {
 
     private BindService bindService;
     private ServiceConnection serviceConnection;
-    private MsgReceiver msgReceiver;
     private ProgressBar mProgressBar;
     private boolean mBound;
 
@@ -28,12 +25,6 @@ public class BindServiceActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_service);
         mProgressBar = (ProgressBar) findViewById(R.id.main_progress);
-
-        // 动态注册广播接收器
-        msgReceiver = new MsgReceiver();
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction("com.zs.communication.RECEIVER");
-        registerReceiver(msgReceiver, intentFilter);
 
         serviceConnection = new ServiceConnection() {
             @Override
@@ -81,18 +72,6 @@ public class BindServiceActivity extends AppCompatActivity {
         if (mBound){
             unbindService(serviceConnection);
             mBound = false;
-        }
-    }
-
-
-
-    class MsgReceiver extends BroadcastReceiver{
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            //拿到进度，更新UI
-            int progress = intent.getIntExtra("progress", 0);
-            mProgressBar.setProgress(progress);
         }
     }
 
